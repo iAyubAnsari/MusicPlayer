@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mediaPLayer=MediaPlayer.create(this,R.raw.song);
+        mediaPLayer=MediaPlayer.create(this,R.raw.google);
 
 
 
@@ -26,8 +26,14 @@ public class MainActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Play", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Play", Toast.LENGTH_SHORT).show();
                 mediaPLayer.start();
+                mediaPLayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        Toast.makeText(MainActivity.this, "I'm done", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
